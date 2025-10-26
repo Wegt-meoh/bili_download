@@ -9,36 +9,31 @@ using for download video and audio on `www.bilibili.com`
 
 ## Usage
 
-- open the video page on your browser for example [some video](https://www.bilibili.com/video/BV1GXqrYuE9y)
+- open the video page on your browser [for example](https://www.bilibili.com/video/BV1GXqrYuE9y)
 
-- press `F12` to open develop panel, then click the `network` menu and `refresh` the page
+- press `F12` to open develop panel
 - ![develop panel](./images/image.png)
 
-- type `m4s` in filter input
-- ![filter input](./images/image1.png)
-
-- found the links like this
-- ![links](./images/image2.png)
-
-- `25730618059-1-30280.m4s` and `25730618059-1-100028.m4s` is the video and audio (you can use `ffmpeg` or `ffprobe` to ensure its type)
-
-- click it and copy the `request url`
-- ![request url](./images/image3.png)
-
-- replace the url in the main.js
-- ![replace url](./images/image8.png)
-
-- copy the modified code, then paste it into `console menu` in the `develop panel` and press `enter` to execute it
+- copy the `main.js` code, then paste it into `console menu` in the `develop panel` and press `enter` to execute it
 - ![console menu](./images/image5.png)
 
 - if your browser ban the code execution defaultly, allow it by following your browser guide
 
-- the console will print the `blob link` when the file download finish, it may takes long time depends on your network quality
-- ![result](./images/image6.png)
+- click the `network` menu in the develop panel and `refresh` the page, remember do not close the `develop panel` until the download start
 
-- `do not close this page!!!`, and open the `two blob link` in an `new page`, then download the m4s files
-- ![download page](./images/image7.png)
+- type `m4s` in filter input
+- ![filter input](./images/image1.png)
 
-- combine the two m4s file by using ffmpeg or other media encoder that supports m4s
-- for example: by using ffmpeg type `ffmpeg -i your_download_file_path_1.m4s -i your_download_file_path_2.m4s -c copy out.mp4` in your command line tool
-- the video will be generated in current path named `out.mp4` by ffmpeg
+- found the links like this, if you can not found the links, look at the `More filters` and select `All`
+- ![links](./images/image2.png)
+
+- `25730618059-1-30280.m4s` and `25730618059-1-100028.m4s` is the video and audio (you can use `ffmpeg` or `ffprobe` to ensure its type after download)
+
+- click it and copy the `request url`
+- ![request url](./images/image3.png)
+
+- type `downloadFromUrl("https://paste.request.url.here", "you_preferred_download_filename.m4s")` in the `console menu`, then press `enter` to execute it
+
+- combine the two `m4s` file by using `ffmpeg` or other media encoder that supports `m4s`
+- for example: when using ffmpeg, type `ffmpeg -i you_download_filename_1.m4s -i you_download_filename_2.m4s -c copy output_name.mp4` in your command line tool
+- the video will be generated in current path named `output_name.mp4`

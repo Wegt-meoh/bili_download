@@ -1,12 +1,19 @@
-const mediaUrlList = [
-    'https://xxxxxxxxxxxxxxxxx.com',
-    'https://xxxxxxxxxxxxxxx1.com'
-]
+async function downloadFromUrl(url, filename) {
+    try {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
 
-for (let url of mediaUrlList) {
-    const res = await fetch(url)
-    const dataBlob = await res.blob()
-    const dataUrl = URL.createObjectURL(dataBlob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = filename || url.split('/').pop();
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
 
-    console.log(dataUrl)
+        // Clean up
+        URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+        console.error('Download failed:', error);
+    }
 }
