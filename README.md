@@ -15,7 +15,6 @@ using for download video and audio on `www.bilibili.com`
 - ![develop panel](./images/image.png)
 
 - copy the `main.js` code, then paste it into `console menu` in the `develop panel` and press `enter` to execute it
-- ![console menu](./images/image5.png)
 
 - if your browser ban the code execution defaultly, allow it by following your browser guide
 
