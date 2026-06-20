@@ -1,17 +1,17 @@
-async function downloadFromUrl(url, filename, fromCache=false) {
+export async function downloadFromUrl(url, filename, fromCache = false) {
     try {
         let response;
-        if(fromCache){
-            response = await fetch(url,{ mode: 'no-cors', cache: 'force-cache' });
-        }else{
+        if (fromCache) {
+            response = await fetch(url, { mode: "no-cors", cache: "force-cache" });
+        } else {
             response = await fetch(url);
         }
         const blob = await response.blob();
         const blobUrl = URL.createObjectURL(blob);
 
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = blobUrl;
-        a.download = filename || url.split('/').pop();
+        a.download = filename || url.split("/").pop();
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -19,6 +19,6 @@ async function downloadFromUrl(url, filename, fromCache=false) {
         // Clean up
         URL.revokeObjectURL(blobUrl);
     } catch (error) {
-        console.error('Download failed:', error);
+        console.error("Download failed:", error);
     }
 }
